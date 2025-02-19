@@ -4,7 +4,8 @@
     <form action="#" th:action="@{/createBook}" th:object="${book}" method="post">
     	<p>Título: <input type="text" th:field="*{title}" /></p>
         <p>Autor: <input type="text" th:field="*{author}" /></p>
-        <p><input type="submit" value="Crear" /> <input type="reset" value="Reset" /></p>
+        <p>Fecha: <input type="datetime-local" th:field="*{publication}" /></p>
+        <p><input type="submit" value="Crear" class="btn-primary" /> <input type="reset" value="Limpiar" /></p>
     </form>
 </body>
 </html>
