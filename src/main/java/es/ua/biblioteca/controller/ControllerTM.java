@@ -59,9 +59,17 @@ public class ControllerTM {
 	    return "result";
 	}
 
-	@RequestMapping("/worksbvmc")
-	public String searchAuthor() {
+	@RequestMapping("/authorsbvmc")
+	public String searchAuthor(Model model) {
+		model.addAttribute("book", new Book());
+		return "searchAuthor";
+	}
 
+	@PostMapping("/authorsbvmc")
+	public String searchAuthor(@ModelAttribute("book") Book book, Model model) {
+		// Aquí puedes usar el valor de book.getAuthor() para hacer lo que necesites
+		model.addAttribute("author", book.getAuthor());
+		
 		return "searchAuthor";
 	}
 

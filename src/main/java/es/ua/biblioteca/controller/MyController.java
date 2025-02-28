@@ -93,6 +93,8 @@ public class MyController {
     
     @RequestMapping("/authorsbvmc")
     public String getAuthorsWikidata() {
+        System.out.println("Pasa por el servicio de wikidata");
     	return wikidataService.getAuthors(10);
     }
+
 }
