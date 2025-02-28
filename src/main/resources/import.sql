@@ -3,3 +3,8 @@ INSERT INTO books(title, author, publication) VALUES('El perro del hortelano', '
 INSERT INTO books(title, author, publication) VALUES('Fuenteovejuna', 'Lope de Vega', '2018-11-01');
 INSERT INTO books(title, author, publication) VALUES('La dama boba', 'Lope de Vega', '2017-11-01');
 INSERT INTO books(title, author, publication) VALUES('El caballero de Olmedo', 'Lope de Vega', '2016-11-01');
+INSERT INTO books(title, author, publication) VALUES('La vida es sueño', 'Pedro Calderón de la Barca', '1635-01-01');
+INSERT INTO books(title, author, publication) VALUES('La Celestina', 'Fernando de Rojas', '1499-01-01');
+INSERT INTO books(title, author, publication) VALUES('El Lazarillo de Tormes', 'Anónimo', '1554-01-01');
+INSERT INTO books(title, author, publication) VALUES('La Regenta', 'Leopoldo Alas Clarín', '1884-01-01');
+INSERT INTO books(title, author, publication) VALUES('Fortunata y Jacinta', 'Benito Pérez Galdós', '1887-01-01');

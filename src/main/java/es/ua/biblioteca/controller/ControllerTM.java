@@ -49,6 +49,7 @@ public class ControllerTM {
 		
 	    return "searchForm";
 	}
+
 	
 	@PostMapping("/createBook")
 	public String createBook(@ModelAttribute Book book, Model model) {
@@ -57,4 +58,11 @@ public class ControllerTM {
 	    model.addAttribute("result", result);
 	    return "result";
 	}
+
+	@RequestMapping("/worksbvmc")
+	public String searchAuthor() {
+
+		return "searchAuthor";
+	}
+
 }
