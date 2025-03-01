@@ -10,14 +10,8 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
@@ -95,6 +89,15 @@ public class MyController {
     public String getAuthorsWikidata() {
         System.out.println("Pasa por el servicio de wikidata");
     	return wikidataService.getAuthors(10);
+    }
+
+    @PostMapping("/authorsbvmc")
+    public String searchAuthor(@RequestParam(value = "author", required = false) String author) {
+        System.out.println("Pasa por el Post del api " + author);
+        // Aquí puedes usar el valor de book.getAuthor() para hacer lo que necesites
+        System.out.println("book.getAuthor()");
+        return "wikidataService.getBooks(book.getAuthor());";
+
     }
 
 }

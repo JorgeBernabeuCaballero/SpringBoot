@@ -5,11 +5,15 @@
 <body>
   <p>Pagina de la biblioteca virtual de Miguel de cervantes</p>
   <h1>Form</h1>
-  <form action="#" th:action="@{/authorsbvmc}" th:object="${book}" method="post">
+  <form action="#" th:action="@{api/authorsbvmc}" th:object="${book}" method="post">
 
     <p>Autor: <input type="text" th:field="*{author}" /></p>
 
-    <p><input type="submit" value="Buscar" class="btn-primary" /> <input type="reset" value="Limpiar" /></p>
+    <p>
+      <input type="submit" value="Buscar" class="btn-primary" />
+      <input type="reset" value="Limpiar" />
+    </p>
+
   </form>
 </body>
 </html>

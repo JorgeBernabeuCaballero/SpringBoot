@@ -65,11 +65,10 @@ public class ControllerTM {
 		return "searchAuthor";
 	}
 
-	@PostMapping("/authorsbvmc")
-	public String searchAuthor(@ModelAttribute("book") Book book, Model model) {
-		// Aquí puedes usar el valor de book.getAuthor() para hacer lo que necesites
-		model.addAttribute("author", book.getAuthor());
-		
+	@PostMapping ("/authorsbvmc")
+	public String searchAuthorPost(Model model) {
+		System.out.println("Pasa por aqui");
+		model.addAttribute("book", new Book());
 		return "searchAuthor";
 	}
 
