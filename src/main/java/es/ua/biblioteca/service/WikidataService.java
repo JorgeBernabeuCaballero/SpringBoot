@@ -53,28 +53,29 @@ public class WikidataService {
 	}
 
 	public String getBooks(String bookName) {
-
+		System.out.println("Pasa por el getBooks");
 		String resultado = "";
 
 		String queryString =
-				"PREFIX wdt: <http://www.wikidata.org/prop/direct/> "
-						+ "PREFIX wikibase: <http://wikiba.se/ontology#> "
-						+ "PREFIX bd: <http://www.bigdata.com/rdf#> "
-						+ "SELECT * WHERE { "
-						+ "   SERVICE <https://query.wikidata.org/sparql> { "
-						+ "      SELECT ?obra ?obraLabel ?fechaPublicacion ?autor ?autorLabel ?imagen "
-						+ "      WHERE { "
-						+ "         ?obra wdt:P3976 ?bvmcWorkID. " // ID de la obra en la BVMC
-						+ "         ?obra wdt:P50 ?autor. " // Relación obra-autor
-						+ "         ?autor wdt:P2799 ?bvmcPersonID. " // ID del autor en la BVMC
-						+ "         ?obra wdt:P577 ?fechaPublicacion. " // Fecha de publicación
-						+ "         ?obra rdfs:label ?obraLabel. " // Nombre de la obra
-						+ "         OPTIONAL { ?obra wdt:P18 ?imagen. } " // Imagen de la obra (si existe)
-						+ "         FILTER(CONTAINS(LCASE(?obraLabel), "+ bookName + ")). " // Filtrar por palabra clave
-						+ "         SERVICE wikibase:label { bd:serviceParam wikibase:language \"es\" } "
-						+ "      } ORDER BY ?obraLabel LIMIT 100 "
-						+ "   } "
-						+ " }";
+				"PREFIX wdt: <http://www.wikidata.org/prop/direct/> " +
+						"PREFIX wikibase: <http://wikiba.se/ontology#> " +
+						"PREFIX bd: <http://www.bigdata.com/rdf#> " +
+						"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
+						"SELECT ?obra (SAMPLE(?obraLabel) AS ?titulo) (SAMPLE(?fechaPublicacion) AS ?fecha) " +
+						"?autor (SAMPLE(?autorLabel) AS ?autorNombre) (SAMPLE(?imagen) AS ?imagenEjemplo) WHERE { " +
+						"   SERVICE <https://query.wikidata.org/sparql> { " +
+						"      ?obra wdt:P3976 ?bvmcWorkID. " +
+						"      ?obra wdt:P50 ?autor. " +
+						"      ?autor wdt:P2799 ?bvmcPersonID. " +
+						"      ?obra wdt:P577 ?fechaPublicacion. " +
+						"      ?obra rdfs:label ?obraLabel. " +
+						"      OPTIONAL { ?obra wdt:P18 ?imagen. } " +
+						"      FILTER(CONTAINS(LCASE(?obraLabel), \"" + bookName.toLowerCase() + "\")) " +
+						"      SERVICE wikibase:label { bd:serviceParam wikibase:language \"es\" } " +
+						"   } " +
+						"} " +
+						"GROUP BY ?obra ?autor " +
+						"ORDER BY ?titulo";
 
 		Query query = QueryFactory.create(queryString) ;
 		try (QueryExecution qexec = QueryExecutionFactory.create(query, ModelFactory.createDefaultModel())) {

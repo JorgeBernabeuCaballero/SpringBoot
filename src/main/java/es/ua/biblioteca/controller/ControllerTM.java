@@ -1,7 +1,10 @@
 package es.ua.biblioteca.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import es.ua.biblioteca.service.WikidataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,9 @@ public class ControllerTM {
 	
 	@Autowired
     private IBookService bookService;
+
+	@Autowired
+	private WikidataService wikidataService;
 	
 	@RequestMapping("/books")
 	public String libros(Model modelo) {
@@ -59,17 +65,31 @@ public class ControllerTM {
 	    return "result";
 	}
 
-	@RequestMapping("/authorsbvmc")
+	@RequestMapping("/wikidatabvmc")
 	public String searchAuthor(Model model) {
 		model.addAttribute("book", new Book());
 		return "searchAuthor";
 	}
 
-	@PostMapping ("/authorsbvmc")
-	public String searchAuthorPost(Model model) {
-		System.out.println("Pasa por aqui");
-		model.addAttribute("book", new Book());
+	@PostMapping ("/wikidatabvmc")
+	public String searchAuthorPost(@RequestParam(value = "author", required = false) String author, Model model) {
+		String booksJson = wikidataService.getBooks(author);
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		Object libros = null;
+
+		try {
+			System.out.println("Pasa por el POST de busqueda del libro");
+			libros = objectMapper.readValue(booksJson, Object.class);
+
+			System.out.println(libros);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Manejar el error, por ejemplo, mostrando un mensaje de error en la vista
+			model.addAttribute("error", "Error al procesar los datos de Wikidata.");
+		}
+
+		model.addAttribute("libros", libros);
 		return "searchAuthor";
 	}
-
 }

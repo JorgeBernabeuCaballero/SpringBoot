@@ -23,36 +23,36 @@ public class MyController {
 
     @Autowired
     private IBookService bookService;
-    
+
     @Autowired
     private WikidataService wikidataService;
-    
+
     @RequestMapping(value = "/book/{id}")
     public Book getBook(@PathVariable long id) throws Exception {
-        
+
         Optional<Book> book = bookService.findById(id);
-        
+
         if(!book.isPresent())
         	throw new Exception("Entity not found");
-        
+
         return book.get();
     }
-    
+
     @DeleteMapping(value = "/book/{id}")
     public String deleteBook(@PathVariable long id) throws Exception {
         return bookService.delete(id);
     }
-    
+
     @RequestMapping("/book")
     public List<Book> getBook() {
        return bookService.findAll();
     }
-    
+
     @PostMapping("/book")
     public String createBook(@RequestBody Book book) {
        return bookService.create(book);
     }
-    
+
     @PutMapping("/book/{id}")
     public String updateBook(@PathVariable("id") long id, @RequestBody Book book) {
     	Optional<Book> bookData = bookService.findById(id);
@@ -63,10 +63,10 @@ public class MyController {
             _book.setAuthor(book.getAuthor());
             return bookService.update(_book);
         }
-        
+
         return "The book is not in the database";
      }
-    
+
     @RequestMapping(value = "/pdfreport", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> booksReport() {
@@ -84,20 +84,22 @@ public class MyController {
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(bis));
     }
-    
+
     @RequestMapping("/authorsbvmc")
     public String getAuthorsWikidata() {
         System.out.println("Pasa por el servicio de wikidata");
     	return wikidataService.getAuthors(10);
     }
-
+    /*
     @PostMapping("/authorsbvmc")
     public String searchAuthor(@RequestParam(value = "author", required = false) String author) {
         System.out.println("Pasa por el Post del api " + author);
         // Aquí puedes usar el valor de book.getAuthor() para hacer lo que necesites
-        System.out.println("book.getAuthor()");
-        return "wikidataService.getBooks(book.getAuthor());";
+
+        return wikidataService.getBooks(author);
 
     }
+
+     */
 
 }

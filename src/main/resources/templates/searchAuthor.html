@@ -1,19 +1,55 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Buscar libro de la Biblioteca Virtual de Miguel de Cervantes</title>
+  <title>Buscar libro Wikidata</title>
+  <!-- Incluir Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .card-img-top {
+        max-height: 300px;
+        object-fit: cover;
+    }
+  </style>
 </head>
 <body>
-  <p>Pagina de la biblioteca virtual de Miguel de cervantes</p>
-  <h1>Form</h1>
-  <form action="#" th:action="@{api/authorsbvmc}" th:object="${book}" method="post">
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Libros de WikiData de la BVMC</h1>
 
-    <p>Autor: <input type="text" th:field="*{author}" /></p>
+  <form action="#" th:action="@{/wikidatabvmc}" method="post">
+    <div class="form-group">
+      <label for="author">Título:</label>
+      <input type="text" class="form-control" id="author" th:name="author" />
+    </div>
 
-    <p>
-      <input type="submit" value="Buscar" class="btn-primary" />
-      <input type="reset" value="Limpiar" />
-    </p>
-
+    <div class="text-center">
+      <input type="submit" value="Buscar" class="btn btn-primary" />
+      <input type="reset" value="Limpiar" class="btn btn-secondary" />
+    </div>
   </form>
+
+  <div th:if="${libros != null and libros.results?.bindings != null}" class="mt-4">
+    <div class="row">
+      <div class="col-md-4 mb-4" th:each="libro : ${libros.results.bindings}">
+        <div class="card h-100">
+          <div th:if="${libro.containsKey('imagenEjemplo') and libro.imagenEjemplo.value != null}">
+            <img th:src="${libro.imagenEjemplo.value}" class="card-img-top" alt="Imagen del libro">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title" th:text="${libro.titulo?.value}"></h5>
+            <!-- <p class="card-text">
+               <strong>Autor:</strong> <span th:text="${libro.autorNombre?.value ?: 'Desconocido'}"></span><br>
+              <strong>Fecha:</strong> <span th:text="${#dates.format(libro.fecha?.value, 'dd-MM-yyyy')}"></span>
+            </p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Incluir Bootstrap JS y dependencias (opcional) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
