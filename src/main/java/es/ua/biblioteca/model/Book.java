@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.Objects;
-import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "books")
@@ -18,15 +18,14 @@ public class Book {
     
     private String author;
     
-    private LocalDateTime publication;
+    private Date publication;
 
     public Book() {
     }
     
-    public Book(String title, String author, LocalDateTime publication) {
+    public Book(String title, String author) {
         this.title = title;
         this.author = author;
-        this.publication = publication;
     }
 
     public Book(Long id, String title, String author) {
@@ -91,11 +90,11 @@ public class Book {
 		this.author = author;
 	}
 
-	public LocalDateTime getPublication() {
+	public Date getPublication() {
 		return publication;
 	}
 
-	public void setPublication(LocalDateTime publication) {
+	public void setPublication(Date publication) {
 		this.publication = publication;
 	}
     

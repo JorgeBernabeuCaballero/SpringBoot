@@ -43,13 +43,20 @@ public class ControllerTM {
 	
 	@RequestMapping("/searchBook")
 	public String searchBook(@RequestParam(value = "texto", required = false) String texto, Model model) {
-		
+
 		// añadir servicio de busqueda llamada y logica para mostrar los resultados en el formulario
 		model.addAttribute("libros", bookService.search(texto));
-		
-	    return "searchForm";
+
+		return "searchForm";
 	}
-	
+	@RequestMapping("/searchAuthor")
+	public String searchAuthor(@RequestParam(value = "texto", required = false) String texto, Model model) {
+
+		// añadir servicio de busqueda llamada y logica para mostrar los resultados en el formulario
+		model.addAttribute("libros", bookService.searchAuthor(texto));
+
+		return "searchAuthor";
+	}
 	@PostMapping("/createBook")
 	public String createBook(@ModelAttribute Book book, Model model) {
 		String result = bookService.create(book);

@@ -13,4 +13,5 @@ public interface IBookService {
 	String update(Book book);
 	String delete(long id);
 	List<Book> search(String title);
+	List<Book> searchAuthor(String title);
 }  

@@ -1,7 +1,6 @@
 package es.ua.biblioteca.service;
 
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +28,6 @@ public class BookService implements IBookService {
 	
 	@Override
 	public String create(Book book) {
-
 		Book b = repository.save(book);
 		return "book created:" + b.toString();
 	}
@@ -55,5 +53,10 @@ public class BookService implements IBookService {
 	@Override
 	public List<Book> search(String title) {
 		return repository.searchTitle(title);
+	}
+
+	@Override
+	public List<Book> searchAuthor(String Author) {
+		return repository.searchAuthor(Author);
 	}
 }
