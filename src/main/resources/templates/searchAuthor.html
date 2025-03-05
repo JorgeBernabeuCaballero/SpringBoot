@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>Search Author Form</h1>
+<a th:href="@{/searchBook}">
+    <button type="button">Buscar por Título</button>
+</a>
+<form th:action="@{/searchAuthor}" method="get">
+    <p>Autor: <input type="text" th:name="texto" /></p>
+    <p><input type="submit" value="Buscar" /> <input type="reset" value="Reset" /></p>
+</form>
+<table>
+    <tr>
+        <th>Título</th>
+        <th>Autor</th>
+    </tr>
+    <tr th:each="book : ${libros}">
+        <td th:text="${book.title}">titulo</td>
+        <td th:text="${book.author}">autor</td>
+    </tr>
+</table>
+</body>
+</html>

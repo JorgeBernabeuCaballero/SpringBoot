@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <h1>Mi biblioteca</h1>
+  
+    <table>
+      <tr>
+        <th>T&iacute;tulo</th>
+        <th>Autor</th>
+      </tr>
+      <tr th:each="book : ${books}">
+        <td th:text="${book.title}">titulo</td>
+        <td th:text="${book.author}">autor</td>
+      </tr>
+    </table>
+  
+    <p>
+      <a href="/index.html" th:href="@{/}">Home</a>
+    </p>
+  </body>
+</html>
+

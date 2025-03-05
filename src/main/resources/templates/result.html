@@ -1,0 +1,9 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<h1>Result</h1>
+    <p th:text="'Título: ' + ${book.title}" />
+    <p th:text="'Autor: ' + ${book.author}" />
+    <a href="/createBook">Crear libro</a>
+    <a href="/books">Recuperar libros</a>
+</body>
+</html>
