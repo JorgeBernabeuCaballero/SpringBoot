@@ -75,7 +75,8 @@ public class WikidataService {
 						"   } " +
 						"} " +
 						"GROUP BY ?obra ?autor " +
-						"ORDER BY ?titulo";
+						"ORDER BY ?titulo " +
+						"LIMIT 50";
 
 		Query query = QueryFactory.create(queryString) ;
 		try (QueryExecution qexec = QueryExecutionFactory.create(query, ModelFactory.createDefaultModel())) {
