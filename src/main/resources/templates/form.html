@@ -2,32 +2,43 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
-<div class="container">
+<body class="bg-dark text-light">
+<!-- Barra de navegación -->
+<header class="bg-dark py-3">
+    <div class="container d-flex justify-content-center">
+        <a href="/createBook" class="btn btn-outline-light mx-2 rounded-pill">Crear libro</a>
+        <a href="/books" class="btn btn-outline-light mx-2 rounded-pill">Recuperar libros</a>
+        <a href="/searchBook" class="btn btn-outline-light mx-2 rounded-pill">Buscar un libro</a>
+        <a href="/api/pdfreport" class="btn btn-outline-light mx-2 rounded-pill">PDF report</a>
+        <a href="/api/authorsbvmc" class="btn btn-outline-light mx-2 rounded-pill">Wikidata call</a>
+    </div>
+</header>
+
+
+<div class="container mt-5">
     <h1 class="text-center mb-4">Formulario de Creación</h1>
     <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-4">
-            <form action="#" th:action="@{/createBook}" th:object="${book}" method="post" class="p-4 border rounded shadow-lg bg-white">
-                <div class="mb-3">
-                    <label for="title" class="form-label">Título:</label>
-                    <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="Ingrese el título del libro" required />
+        <div class="col-md-6">
+            <!-- Formulario -->
+            <form action="#" th:action="@{/createBook}" th:object="${book}" method="post">
+                <div class="mb-4">
+                    <label for="title" class="form-label text-light">Título</label>
+                    <input type="text" id="title" th:field="*{title}" class="form-control bg-dark text-light border-0 border-bottom rounded-0" placeholder="Ingrese el título del libro" required />
                 </div>
-                <div class="mb-3">
-                    <label for="author" class="form-label">Autor:</label>
-                    <input type="text" id="author" th:field="*{author}" class="form-control" placeholder="Ingrese el autor del libro" required />
+                <div class="mb-4">
+                    <label for="author" class="form-label text-light">Autor</label>
+                    <input type="text" id="author" th:field="*{author}" class="form-control bg-dark text-light border-0 border-bottom rounded-0" placeholder="Ingrese el autor del libro" required />
                 </div>
-                <div class="d-grid gap-2">
-                    <!-- Botón Crear más grande -->
-                    <button type="submit" class="btn btn-primary btn-lg">Crear</button>
-                </div>
-                <div class="d-grid gap-2 mt-2">
-                    <!-- Botón Reset más pequeño -->
-                    <button type="reset" class="btn btn-secondary btn-sm">Resetear</button>
+                <div class="d-flex justify-content-between">
+                    <!-- Botón Crear -->
+                    <button type="submit" class="btn btn-outline-light rounded-pill px-4">Crear</button>
+                    <!-- Botón Reset -->
+                    <button type="reset" class="btn btn-outline-secondary rounded-pill px-4">Resetear</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
