@@ -1,6 +1,6 @@
 # Autores
-Pedro Vázquez Tévar
-Jorge Bernabeu Caballero
+Pedro Vázquez Tévar.
+Jorge Bernabeu Caballero.
 
 # Proyecto biblioteca de Spring Boot en version 3.4.2
 
