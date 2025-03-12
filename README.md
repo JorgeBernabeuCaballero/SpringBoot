@@ -1,3 +1,8 @@
+# Autores
+Pedro Vázquez Tévar.
+
+Jorge Bernabeu Caballero.
+
 # Proyecto biblioteca de Spring Boot en version 3.4.2
 
 Este proyecto se ha creado para la asignatura [Tecnologías de Internet Orientadas al Navegador del Máster Universitario en Desarrollo de Aplicaciones y Servicios Web de la Universidad de Alicante](https://cvnet.cpd.ua.es/Guia-Docente/?wcodasi=38215&wlengua=es&scaca=2024-25).
@@ -42,11 +47,26 @@ El proyecto proporciona un servicio para recuperar información de Wikidata. Se 
 PREFIX wdt: <http://www.wikidata.org/prop/direct/> 
 PREFIX wikibase: <http://wikiba.se/ontology#> 
 PREFIX bd: <http://www.bigdata.com/rdf#> 
-SELECT DISTINCT ?autor ?autorLabel 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+SELECT ?obra (SAMPLE(?obraLabel) AS ?titulo) (SAMPLE(?fechaPublicacion) AS ?fecha) 
+       ?autor (SAMPLE(?autorLabel) AS ?autorNombre) (SAMPLE(?imagen) AS ?imagenEjemplo) 
 WHERE { 
-  ?autor wdt:P2799 ?idbvmc. 
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "es" } 
-} LIMIT 10
+   SERVICE <https://query.wikidata.org/sparql> { 
+      ?obra wdt:P3976 ?bvmcWorkID. 
+      ?obra wdt:P50 ?autor. 
+      ?autor wdt:P2799 ?bvmcPersonID. 
+      ?obra wdt:P577 ?fechaPublicacion. 
+      ?obra rdfs:label ?obraLabel. 
+      OPTIONAL { ?obra wdt:P18 ?imagen. } 
+      FILTER(CONTAINS(LCASE(?obraLabel), "NOMBRE_DEL_LIBRO"))  # Sustituir "NOMBRE_DEL_LIBRO" dinámicamente
+      SERVICE wikibase:label { bd:serviceParam wikibase:language "es" } 
+   } 
+} 
+GROUP BY ?obra ?autor 
+ORDER BY ?titulo 
+LIMIT 50
+
 ```
 
 ## Posibles mejoras para el proyecto
@@ -66,3 +86,5 @@ WHERE {
 
 ## Licencia y términos de uso
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licencia Creative Commons Atribución 4.0 Internacional</a>.
+
+
