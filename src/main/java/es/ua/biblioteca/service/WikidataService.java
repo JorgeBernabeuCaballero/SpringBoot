@@ -53,7 +53,7 @@ public class WikidataService {
 	}
 
 	public String getBooks(String bookName) {
-		System.out.println("Pasa por el getBooks");
+
 		String resultado = "";
 
 		String queryString =
