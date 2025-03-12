@@ -3,7 +3,6 @@ Pedro Vázquez Tévar.
 
 Jorge Bernabeu Caballero.
 
-![Descripción de la imagen](assets/formulario.png)
 
 # Proyecto biblioteca de Spring Boot en version 3.4.2
 
@@ -85,6 +84,13 @@ LIMIT 50
 - Modificar la sentencia SPARQL para recuperar otro tipo de contenido a partir del repositorio de Wikidata. Para ello podéis consultar información sobre cómo [crear consultas SPARQL](https://data.cervantesvirtual.com/noticia/tutorial-de-inicio-a-sparql), [ejemplos de Wikidata](https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/queries/examples/es) y [otras iniciativas](https://github.com/hibernator11/hdh-compartir-pantalla-2023).
 - Crear una vista Thymeleaf para mostrar los resultados de la llamada a Wikidata (localhost:8081/api/authorsbvmc)
 - Añadir sistema de login con usuarios
+
+
+![Menú de la aplicacion](assets/menu.png)
+![Formualario para la creación de libros](assets/formulario.png)
+![Generación de PDF](assets/ipdf.png)
+![Búsqueda en Wikidata](assets/wikidata.png)
+
 
 ## Licencia y términos de uso
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licencia Creative Commons Atribución 4.0 Internacional</a>.
