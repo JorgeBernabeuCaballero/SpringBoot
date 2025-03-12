@@ -85,10 +85,17 @@ LIMIT 50
 - Crear una vista Thymeleaf para mostrar los resultados de la llamada a Wikidata (localhost:8081/api/authorsbvmc)
 - Añadir sistema de login con usuarios
 
-
+#Capturas del proyecto
+## Menú de la aplicacion
 ![Menú de la aplicacion](assets/menu.png)
+
+## Formualario para la creación de libros
 ![Formualario para la creación de libros](assets/formulario.png)
+
+## Generación de PDF
 ![Generación de PDF](assets/ipdf.png)
+
+## Búsqueda en Wikidata
 ![Búsqueda en Wikidata](assets/wikidata.png)
 
 
